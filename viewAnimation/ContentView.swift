@@ -6,16 +6,38 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
+    @State private var isExpanded = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        GeometryReader { geometry in
+            ZStack {
+                VStack {
+                    Text("Bla Bla Elementler")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 400)
+                    Spacer()
+                }
+                VStack {
+                    Spacer()
+                    VStack {
+                        Map()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: self.isExpanded ? geometry.size.height : 500)
+                    }
+                    .frame(width: geometry.size.width, height: self.isExpanded ? geometry.size.height : 200)
+                    .background(Color.green)
+                    .animation(.easeInOut(duration: 0.5), value: isExpanded)
+                }
+                .onTapGesture {
+                    withAnimation {
+                        self.isExpanded.toggle()
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
