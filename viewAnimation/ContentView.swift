@@ -36,6 +36,32 @@ struct ContentView: View {
                         self.isExpanded.toggle()
                     }
                 }
+                
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        print("Qr'a Yönlendir")
+                    }) {
+                        HStack {
+                            Image(systemName: "qrcode.viewfinder")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.white)
+                                .padding(.trailing, 20)
+                            
+                            Text("KAPSULE GİRİŞ")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: geometry.size.width * 0.8)
+                        .frame(height: 60)
+                        .background(Color.black)
+                        .cornerRadius(25)
+                        .padding(.horizontal)
+                    }
+                }
+                
             }
         }
     }
